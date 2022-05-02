@@ -9,6 +9,7 @@ import nz.ac.auckland.se281.a3.bot.StrategyFactory;
 import nz.ac.auckland.se281.a3.dealer.Dealer;
 import nz.ac.auckland.se281.a3.dealer.DealerStrategy;
 import nz.ac.auckland.se281.a3.dealer.TargetHighestBidder;
+import nz.ac.auckland.se281.a3.dealer.TargetTopWinner;
 
 /**
  * Unless it is specified in the JavaDoc, you cannot change any methods.
@@ -20,8 +21,9 @@ public class BlackJack {
 	private List<Player> players;
 	private Dealer dealer;
 	private Deck deck;
-	private List<Integer> roundsWon = new ArrayList<>();
-	private List<Integer> roundsLost = new ArrayList<>();
+	private int[] roundsWon = { 0, 0, 0 };
+	private int[] roundsLost = { 0, 0, 0 };
+	private List<Integer> netWins = new ArrayList<>();
 
 	public BlackJack(Deck deck) {
 		this.deck = deck;
@@ -121,15 +123,43 @@ public class BlackJack {
 			}
 
 			if (result == "won") {
-				roundsWon.set(i, roundsWon.get(i) + 1);
+				roundsWon[i]++;
 			} else {
-				roundsLost.set(i, roundsLost.get(i) + 1);
+				roundsLost[i]++;
 			}
 
 			System.out.println("Round " + round + ": " + players.get(i).getName() + " " + result + " $"
 					+ players.get(i).getHand().getBet());
 
 		}
+
+		calculateNetWins();
+		decideIfChangeStrategy();
+	}
+
+	private void calculateNetWins() {
+
+		for (int i = 0; i < 3; i++) {
+			netWins.add(roundsWon[i] - roundsLost[i]);
+		}
+	}
+
+	private void decideIfChangeStrategy() {
+
+		boolean changeStrategyToTopWinner = false;
+
+		for (int i = 0; i < 3; i++) {
+			if (netWins.get(i) > 1) {
+				changeStrategyToTopWinner = true;
+			}
+		}
+
+		if (changeStrategyToTopWinner) {
+			dealer.setStrategy(new TargetTopWinner(players, netWins));
+		} else {
+			dealer.setStrategy(new TargetHighestBidder(players));
+		}
+
 	}
 
 	/**

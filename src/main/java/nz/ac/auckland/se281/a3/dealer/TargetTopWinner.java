@@ -9,24 +9,22 @@ import nz.ac.auckland.se281.a3.Player;
 
 public class TargetTopWinner implements DealerStrategy {
 	private List<Player> players;
-	private List<Integer> roundsWon = new ArrayList<>();
-	private List<Integer> roundsLost = new ArrayList<>();
+	private List<Integer> netWins = new ArrayList<>();
 	private int indexOfTopWinner = 0;
 
-	public TargetTopWinner(List<Player> players, List<Integer> roundsWon, List<Integer> roundsLost) {
+	public TargetTopWinner(List<Player> players, List<Integer> netWins) {
 		this.players = players;
-		this.roundsWon = roundsWon;
-		this.roundsLost = roundsLost;
+		this.netWins = netWins;
 	}
 
 	@Override
 	public Action decideAction(Hand hand) {
 
-		int netWins = roundsWon.get(0) - roundsLost.get(0);
+		int topWinner = netWins.get(0);
 
 		for (int i = 1; i < 3; i++) {
-			if ((roundsWon.get(i) - roundsLost.get(i)) > netWins) {
-				netWins = roundsWon.get(i) - roundsLost.get(i);
+			if (netWins.get(i) > topWinner) {
+				topWinner = netWins.get(i);
 				indexOfTopWinner = i;
 			}
 		}

@@ -21,4 +21,8 @@ public class Dealer extends Participant {
 		return strategy.decideAction(hand);
 	}
 
+	public void setStrategy(DealerStrategy strategy) {
+		this.strategy = strategy;
+	}
+
 }
