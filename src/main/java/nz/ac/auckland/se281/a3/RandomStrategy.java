@@ -20,8 +20,11 @@ public class RandomStrategy implements BotStrategy {
 
 	@Override
 	public int makeABet() {
-		// TODO Auto-generated method stub
-		return 1;
+		// generates a random integer between 1 and 100 (the plus one ensures it is not
+		// 0)
+		// code adapted from
+		// https://www.codegrepper.com/code-examples/java/Java+random+number+between+1+and+100
+		return new Random().nextInt(100) + 1;
 	}
 
 }
