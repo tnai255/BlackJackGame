@@ -20,8 +20,8 @@ public class BlackJack {
 	private List<Player> players;
 	private Dealer dealer;
 	private Deck deck;
-	private int[] roundsWon = { 0, 0, 0 };
-	private int[] roundsLost = { 0, 0, 0 };
+	private List<Integer> roundsWon = new ArrayList<>();
+	private List<Integer> roundsLost = new ArrayList<>();
 
 	public BlackJack(Deck deck) {
 		this.deck = deck;
@@ -110,27 +110,26 @@ public class BlackJack {
 	 */
 	protected void printAndUpdateResults(int round) {
 
-//		String result = "won";
-//
-//		for (int i = 0; i < 3; i++) {
-//			if (players.get(i).getHand().getScore() <= dealer.getHand().getScore() && !dealer.getHand().isBust()) {
-//				result = "lost";
-//				if (players.get(i).getHand().isBlackJack()
-//						&& !dealer.getHand().isBlackJack()) {
-//					result = "won";
-//				}
-//			}
-//
-//			if (result == "won") {
-//				roundsWon[i]++;
-//			} else {
-//				roundsLost[i]++;
-//			}
-//
-//			System.out.println("Round " + round + ": " + players.get(i).getName() + " " + result + " $"
-//					+ players.get(i).getHand().getBet());
-//
-//		}
+		String result = "won";
+
+		for (int i = 0; i < 3; i++) {
+			if (players.get(i).getHand().getScore() <= dealer.getHand().getScore() && !dealer.getHand().isBust()) {
+				result = "lost";
+				if (players.get(i).getHand().isBlackJack() && !dealer.getHand().isBlackJack()) {
+					result = "won";
+				}
+			}
+
+			if (result == "won") {
+				roundsWon.set(i, roundsWon.get(i) + 1);
+			} else {
+				roundsLost.set(i, roundsLost.get(i) + 1);
+			}
+
+			System.out.println("Round " + round + ": " + players.get(i).getName() + " " + result + " $"
+					+ players.get(i).getHand().getBet());
+
+		}
 	}
 
 	/**
