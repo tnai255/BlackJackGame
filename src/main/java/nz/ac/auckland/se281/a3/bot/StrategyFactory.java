@@ -1,4 +1,4 @@
-package nz.ac.auckland.se281.a3;
+package nz.ac.auckland.se281.a3.bot;
 
 public class StrategyFactory {
 
