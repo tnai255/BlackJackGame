@@ -21,7 +21,7 @@ public class RandomStrategy implements BotStrategy {
 	@Override
 	public int makeABet() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 }

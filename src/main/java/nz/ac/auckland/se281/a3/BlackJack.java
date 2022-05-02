@@ -79,10 +79,11 @@ public class BlackJack {
 	 * Task1
 	 */
 	protected void initBots() {
-		Bot bot1 = new Bot("Bot1");
-		Bot bot2 = new Bot("Bot2");
-		// String botStrategyString = getBotStrategy(); // UNCOMMENT THIS
+		String botStrategyString = getBotStrategy(); // UNCOMMENT THIS
 		// create and set Bots strategy here
+		BotStrategy chosenStrategy = StrategyFactory.chooseStrategy(botStrategyString);
+		Bot bot1 = new Bot("Bot1", chosenStrategy);
+		Bot bot2 = new Bot("Bot2", chosenStrategy);
 		players.add(bot1);
 		players.add(bot2);
 	}
