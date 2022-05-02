@@ -21,6 +21,8 @@ public class BlackJack {
 	private List<Player> players;
 	private Dealer dealer;
 	private Deck deck;
+	private int[] roundsWon = { 0, 0, 0 };
+	private int[] roundsLost = { 0, 0, 0 };
 	private List<Integer> netWins = new ArrayList<>();
 
 	public BlackJack(Deck deck) {
@@ -102,6 +104,11 @@ public class BlackJack {
 		// set the initial strategy using the Strategy pattern
 		DealerStrategy strategy = new TargetHighestBidder(players);
 		dealer = new Dealer("Dealer", strategy);
+
+		for (int i = 0; i < 3; i++) {
+			roundsWon[i] = 0;
+			roundsLost[i] = 0;
+		}
 	}
 
 	/**
@@ -110,17 +117,21 @@ public class BlackJack {
 	 */
 	protected void printAndUpdateResults(int round) {
 
-		int[] roundsWon = { 0, 0, 0 };
-		int[] roundsLost = { 0, 0, 0 };
-
-		String result = "won";
+		String result = "lost";
 
 		for (int i = 0; i < 3; i++) {
-			if (players.get(i).getHand().getScore() <= dealer.getHand().getScore() && !dealer.getHand().isBust()) {
-				result = "lost";
-				if (players.get(i).getHand().isBlackJack() && !dealer.getHand().isBlackJack()) {
-					result = "won";
-				}
+
+			if (players.get(i).getHand().isBlackJack() && !dealer.getHand().isBlackJack()) {
+				result = "won";
+			}
+
+			if (players.get(i).getHand().getScore() > dealer.getHand().getScore()
+					&& !players.get(i).getHand().isBust()) {
+				result = "won";
+			}
+
+			if (!players.get(i).getHand().isBust() && dealer.getHand().isBust()) {
+				result = "won";
 			}
 
 			if (result == "won") {
@@ -140,8 +151,11 @@ public class BlackJack {
 
 	private void calculateNetWins(int[] roundsWon, int[] roundsLost) {
 
+		netWins.clear();
+
 		for (int i = 0; i < 3; i++) {
 			netWins.add(roundsWon[i] - roundsLost[i]);
+			System.out.println(netWins.get(i));
 		}
 	}
 
