@@ -21,8 +21,6 @@ public class BlackJack {
 	private List<Player> players;
 	private Dealer dealer;
 	private Deck deck;
-	private int[] roundsWon = { 0, 0, 0 };
-	private int[] roundsLost = { 0, 0, 0 };
 	private List<Integer> netWins = new ArrayList<>();
 
 	public BlackJack(Deck deck) {
@@ -112,6 +110,9 @@ public class BlackJack {
 	 */
 	protected void printAndUpdateResults(int round) {
 
+		int[] roundsWon = { 0, 0, 0 };
+		int[] roundsLost = { 0, 0, 0 };
+
 		String result = "won";
 
 		for (int i = 0; i < 3; i++) {
@@ -133,11 +134,11 @@ public class BlackJack {
 
 		}
 
-		calculateNetWins();
+		calculateNetWins(roundsWon, roundsLost);
 		decideIfChangeStrategy();
 	}
 
-	private void calculateNetWins() {
+	private void calculateNetWins(int[] roundsWon, int[] roundsLost) {
 
 		for (int i = 0; i < 3; i++) {
 			netWins.add(roundsWon[i] - roundsLost[i]);
