@@ -6,15 +6,12 @@ public class StrategyFactory {
 		switch (chosenStrategy) {
 		case "R":
 			return new RandomStrategy();
-
-//		case "LR":
-//			return new LowRiskStrategy();
-//
+		case "LR":
+			return new LowRiskStrategy();
 //		case "HR":
 //			return new HighRiskStrategy();
-
 		default:
-			System.err.println("wrong strategy type");
+			System.err.println("Wrong strategy type chosen");
 			System.exit(0);
 		}
 		return null;

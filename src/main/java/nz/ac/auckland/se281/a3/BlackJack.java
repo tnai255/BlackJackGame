@@ -24,7 +24,7 @@ public class BlackJack {
 	}
 
 	/**
-	 * Thi constructor is for testing reasons
+	 * This constructor is for testing reasons
 	 * 
 	 * @param cards
 	 */
