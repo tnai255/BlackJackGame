@@ -1,5 +1,7 @@
 package nz.ac.auckland.se281.a3;
 
+import java.util.Random;
+
 import nz.ac.auckland.se281.a3.Participant.Action;
 
 public class LowRiskStrategy implements BotStrategy {
@@ -18,8 +20,10 @@ public class LowRiskStrategy implements BotStrategy {
 
 	@Override
 	public int makeABet() {
-		// TODO Auto-generated method stub
-		return 1;
+		// generates random number between 10 and 50
+		// code adapted from
+		// https://stackoverflow.com/questions/5271598/java-generate-random-number-between-two-given-values
+		return new Random().nextInt(40) + 10;
 	}
 
 }
