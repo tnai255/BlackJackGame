@@ -115,7 +115,7 @@ public class BlackJack {
 //		for (int i = 0; i < 3; i++) {
 //			if (players.get(i).getHand().getScore() <= dealer.getHand().getScore() && !dealer.getHand().isBust()) {
 //				result = "lost";
-//				if (players.get(i).getHand().isBlackJack() && dealer.getHand().is21()
+//				if (players.get(i).getHand().isBlackJack()
 //						&& !dealer.getHand().isBlackJack()) {
 //					result = "won";
 //				}
