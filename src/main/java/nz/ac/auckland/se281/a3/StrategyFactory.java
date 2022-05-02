@@ -8,8 +8,8 @@ public class StrategyFactory {
 			return new RandomStrategy();
 		case "LR":
 			return new LowRiskStrategy();
-//		case "HR":
-//			return new HighRiskStrategy();
+		case "HR":
+			return new HighRiskStrategy();
 		default:
 			System.err.println("Wrong strategy type chosen");
 			System.exit(0);
