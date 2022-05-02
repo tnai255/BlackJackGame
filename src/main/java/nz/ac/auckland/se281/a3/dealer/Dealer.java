@@ -9,14 +9,16 @@ import nz.ac.auckland.se281.a3.Participant;
  *
  */
 public class Dealer extends Participant {
+	DealerStrategy strategy;
 
-	public Dealer(String name) {
+	public Dealer(String name, DealerStrategy strategy) {
 		super(name);
+		this.strategy = strategy;
 	}
 
 	@Override
 	public Action decideAction(Hand hand) {
-		return Action.HOLD;
+		return strategy.decideAction(hand);
 	}
 
 }
