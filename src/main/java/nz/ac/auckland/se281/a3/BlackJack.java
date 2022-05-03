@@ -21,6 +21,7 @@ public class BlackJack {
 	private List<Player> players;
 	private Dealer dealer;
 	private Deck deck;
+	// declaring roundsWon, roundsLost and netWins arrays
 	private int[] roundsWon = { 0, 0, 0 };
 	private int[] roundsLost = { 0, 0, 0 };
 	private List<Integer> netWins = new ArrayList<>();
@@ -87,9 +88,10 @@ public class BlackJack {
 	 * Task1
 	 */
 	protected void initBots() {
-		String botStrategyString = getBotStrategy(); // UNCOMMENT THIS
-		// create and set Bots strategy here
+		String botStrategyString = getBotStrategy();
+		// create chosen strategy from factory pattern based on input string
 		BotStrategy chosenStrategy = StrategyFactory.chooseStrategy(botStrategyString);
+		// creates the two bots to take in and use that strategy
 		Bot bot1 = new Bot("Bot1", chosenStrategy);
 		Bot bot2 = new Bot("Bot2", chosenStrategy);
 		players.add(bot1);
@@ -105,6 +107,7 @@ public class BlackJack {
 		DealerStrategy strategy = new TargetHighestBidder(players);
 		dealer = new Dealer("Dealer", strategy);
 
+		// sets roundsWon and lost arrays back to zero
 		for (int i = 0; i < 3; i++) {
 			roundsWon[i] = 0;
 			roundsLost[i] = 0;
@@ -121,54 +124,79 @@ public class BlackJack {
 
 			String result = "lost";
 
-			// CHECK THIS THOROUGHLY
+			// changing the result for the players if they win if these specific scenarios
+			// are met
+
+			// checking if player has blackjack and dealer doesn't player wins
 			if (players.get(i).getHand().isBlackJack() && !dealer.getHand().isBlackJack()) {
 				result = "won";
 			}
-
+			// checking if player has a bigger score compared to the dealer and is not a
+			// bust
 			if ((players.get(i).getHand().getScore() > dealer.getHand().getScore())
 					&& !players.get(i).getHand().isBust()) {
 				result = "won";
 			}
 
+			// checking if player is not a bust and dealer is
 			if (!players.get(i).getHand().isBust() && dealer.getHand().isBust()) {
 				result = "won";
 			}
 
+			// creates an array of the wins and losts for the all players
 			if (result == "won") {
 				roundsWon[i]++;
 			} else {
 				roundsLost[i]++;
 			}
 
+			// prints out the round, result and the bet of each player
 			System.out.println("Round " + round + ": " + players.get(i).getName() + " " + result + " "
 					+ players.get(i).getHand().getBet() + " chips");
 
 		}
 
+		// calculates the net wins based on the rounds won and rounds lost
 		calculateNetWins(roundsWon, roundsLost);
+		// decides if dealer should change strategy
 		decideIfChangeStrategy();
 	}
 
+	/**
+	 * Calculates Net Wins based on the roundsWon and roundsLost array
+	 * 
+	 * @param roundsWon
+	 * @param roundsLost
+	 */
 	private void calculateNetWins(int[] roundsWon, int[] roundsLost) {
 
+		// clears array before creating new netWins
 		netWins.clear();
 
+		// calculates net wins for each player
 		for (int i = 0; i < 3; i++) {
 			netWins.add(roundsWon[i] - roundsLost[i]);
 		}
 	}
 
+	/**
+	 * Decide if strategy needs to be changed
+	 */
 	private void decideIfChangeStrategy() {
 
+		// initialises change strategy to false
 		boolean changeStrategyToTopWinner = false;
 
+		// loops through the net wins and checks if theres a net win 2 or more
 		for (int i = 0; i < 3; i++) {
 			if (netWins.get(i) > 1) {
+				// changes it to true
 				changeStrategyToTopWinner = true;
 			}
 		}
 
+		// if change strategy to top winner is true then dealer changes strategy to top
+		// winner otherwise changes to top bidder
 		if (changeStrategyToTopWinner) {
 			dealer.setStrategy(new TargetTopWinner(players, netWins));
 		} else {
@@ -182,11 +210,14 @@ public class BlackJack {
 	 */
 	protected void printGameStatistics() {
 
+		// sets index to 0
 		int i = 0;
 
+		// loops through all the players and prints out their results
 		for (Player player : players) {
 			System.out
 					.println(player.getName() + " won " + roundsWon[i] + " times and lost " + roundsLost[i] + " times");
+			// increments index to change to other player
 			i++;
 		}
 	}

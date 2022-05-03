@@ -9,6 +9,7 @@ import nz.ac.auckland.se281.a3.Player;
 public class Bot extends Player {
 	BotStrategy strategy;
 
+	// takes in strategy based on factory pattern
 	public Bot(String name, BotStrategy chosenStrategy) {
 		super(name);
 		strategy = chosenStrategy;
@@ -16,11 +17,13 @@ public class Bot extends Player {
 
 	@Override
 	public Action decideAction(Hand hand) {
+		// decides action based on strategy
 		return strategy.decideAction(hand);
 	}
 
 	@Override
 	public int makeABet() {
+		// makes bet based on strategy
 		return strategy.makeABet();
 	}
 
