@@ -29,8 +29,6 @@ public class TargetTopWinner implements DealerStrategy {
 			}
 		}
 
-		System.out.println("TopWinner: " + indexOfTopWinner);
-
 		if (players.get(indexOfTopWinner).getHand().isBlackJack() && !hand.isBlackJack()) {
 			if (hand.getScore() > 16) {
 				return Action.HOLD;

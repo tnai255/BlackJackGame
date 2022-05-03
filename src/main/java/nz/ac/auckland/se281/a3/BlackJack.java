@@ -117,16 +117,16 @@ public class BlackJack {
 	 */
 	protected void printAndUpdateResults(int round) {
 
-		String result = "lost";
-
 		for (int i = 0; i < 3; i++) {
+
+			String result = "lost";
 
 			// CHECK THIS THOROUGHLY
 			if (players.get(i).getHand().isBlackJack() && !dealer.getHand().isBlackJack()) {
 				result = "won";
 			}
 
-			if (players.get(i).getHand().getScore() > dealer.getHand().getScore()
+			if ((players.get(i).getHand().getScore() > dealer.getHand().getScore())
 					&& !players.get(i).getHand().isBust()) {
 				result = "won";
 			}

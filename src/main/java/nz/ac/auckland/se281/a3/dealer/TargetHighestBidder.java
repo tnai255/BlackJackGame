@@ -26,8 +26,6 @@ public class TargetHighestBidder implements DealerStrategy {
 			}
 		}
 
-		System.out.println(indexOfHighestBidder);
-
 		if (players.get(indexOfHighestBidder).getHand().isBlackJack() && !hand.isBlackJack()) {
 			if (hand.getScore() > 16) {
 				return Action.HOLD;
