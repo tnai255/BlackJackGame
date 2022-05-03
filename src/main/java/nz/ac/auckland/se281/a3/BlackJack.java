@@ -182,6 +182,13 @@ public class BlackJack {
 	 */
 	protected void printGameStatistics() {
 
+		int i = 0;
+
+		for (Player player : players) {
+			System.out
+					.println(player.getName() + " won " + roundsWon[i] + " times and lost " + roundsLost[i] + " times");
+			i++;
+		}
 	}
 
 }
