@@ -121,6 +121,7 @@ public class BlackJack {
 
 		for (int i = 0; i < 3; i++) {
 
+			// CHECK THIS THOROUGHLY
 			if (players.get(i).getHand().isBlackJack() && !dealer.getHand().isBlackJack()) {
 				result = "won";
 			}
@@ -140,8 +141,8 @@ public class BlackJack {
 				roundsLost[i]++;
 			}
 
-			System.out.println("Round " + round + ": " + players.get(i).getName() + " " + result + " $"
-					+ players.get(i).getHand().getBet());
+			System.out.println("Round " + round + ": " + players.get(i).getName() + " " + result + " "
+					+ players.get(i).getHand().getBet() + " chips");
 
 		}
 
@@ -155,7 +156,6 @@ public class BlackJack {
 
 		for (int i = 0; i < 3; i++) {
 			netWins.add(roundsWon[i] - roundsLost[i]);
-			System.out.println(netWins.get(i));
 		}
 	}
 
