@@ -31,7 +31,7 @@ public class RandomStrategy implements BotStrategy {
 	public int makeABet() {
 		// the plus one ensures it is not 0
 		// code adapted from
-		// https://www.codegrepper.com/code-examples/java/Java+random+number+between+1+and+100
+		// https://stackoverflow.com/questions/5271598/java-generate-random-number-between-two-given-values
 		return new Random().nextInt(100) + 1;
 	}
 

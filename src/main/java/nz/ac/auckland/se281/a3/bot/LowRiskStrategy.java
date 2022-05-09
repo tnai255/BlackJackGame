@@ -34,7 +34,7 @@ public class LowRiskStrategy implements BotStrategy {
 		// generates random number between 10 and 50
 		// code adapted from
 		// https://stackoverflow.com/questions/5271598/java-generate-random-number-between-two-given-values
-		return new Random().nextInt(40) + 10;
+		return new Random().nextInt(41) + 10;
 	}
 
 }

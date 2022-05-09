@@ -32,7 +32,7 @@ public class HighRiskStrategy implements BotStrategy {
 	public int makeABet() {
 		// code adapted from
 		// https://stackoverflow.com/questions/5271598/java-generate-random-number-between-two-given-values
-		return new Random().nextInt(50) + 50;
+		return new Random().nextInt(51) + 50;
 	}
 
 }
