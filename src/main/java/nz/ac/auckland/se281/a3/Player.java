@@ -35,6 +35,7 @@ public abstract class Player extends Participant {
 		if (this.getHand().isBlackJack() && !dealer.getHand().isBlackJack()) {
 			return "won";
 		}
+
 		// checking if player has a bigger score compared to the dealer and is not a
 		// bust
 		if ((this.getHand().getScore() > dealer.getHand().getScore()) && !this.getHand().isBust()) {
