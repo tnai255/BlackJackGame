@@ -112,14 +112,14 @@ public class BlackJack {
 	 */
 	protected void printAndUpdateResults(int round) {
 
-		for (int i = 0; i < 3; i++) {
+		for (Player player : players) {
 
 			// prints out the round, result and the bet of each player
-			System.out.println("Round " + round + ": " + players.get(i).getName() + " "
-					+ players.get(i).didPlayerWin(dealer) + " " + players.get(i).getHand().getBet() + " chips");
+			System.out.println("Round " + round + ": " + player.getName() + " " + player.didPlayerWin(dealer) + " "
+					+ player.getHand().getBet() + " chips");
 
 			// calculates the rounds won and lost by calling method
-			players.get(i).setRoundsWonAndLost();
+			player.setRoundsWonAndLost();
 
 		}
 
