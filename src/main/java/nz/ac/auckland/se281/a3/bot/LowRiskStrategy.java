@@ -19,9 +19,9 @@ public class LowRiskStrategy implements BotStrategy {
 		// otherwise it hits
 		if (hand.getScore() > 16) {
 			return Action.HOLD;
-		} else {
-			return Action.HIT;
 		}
+
+		return Action.HIT;
 
 	}
 
