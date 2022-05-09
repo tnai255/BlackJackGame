@@ -2,7 +2,12 @@ package nz.ac.auckland.se281.a3.bot;
 
 public class StrategyFactory {
 
-	// decides which instance strategy to create based on input string given by user
+	/**
+	 * decides which instance strategy to create based on input string given by user
+	 * 
+	 * @param chosenStrategy (strategy of bot chosen by user input)
+	 * @return an instance of the chosen strategy class depending on input or null
+	 */
 	public static BotStrategy chooseStrategy(String chosenStrategy) {
 		switch (chosenStrategy) {
 		// if input R it creates random strategy
