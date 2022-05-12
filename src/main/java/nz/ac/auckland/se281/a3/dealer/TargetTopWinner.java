@@ -1,6 +1,5 @@
 package nz.ac.auckland.se281.a3.dealer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import nz.ac.auckland.se281.a3.Hand;
@@ -10,7 +9,7 @@ import nz.ac.auckland.se281.a3.Player;
 public class TargetTopWinner implements DealerStrategy {
 	// declares instance fields
 	private List<Player> players;
-	private List<Integer> netWins = new ArrayList<>();
+	private List<Integer> netWins;
 	private int indexOfTopWinner = 0;
 
 	/**
