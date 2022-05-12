@@ -59,7 +59,7 @@ public class TargetHighestBidder implements DealerStrategy {
 		}
 
 		// if dealer already has a higher or equal score to highest bid player or if the
-		// highest bid player is a bust I99999it holds
+		// highest bid player is a bust it holds
 		if (players.get(indexOfHighestBidder).getHand().getScore() <= hand.getScore()
 				|| players.get(indexOfHighestBidder).getHand().isBust()) {
 			return Action.HOLD;
