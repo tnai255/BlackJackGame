@@ -9,7 +9,7 @@ import nz.ac.auckland.se281.a3.Participant;
  *
  */
 public class Dealer extends Participant {
-	DealerStrategy strategy;
+	private DealerStrategy strategy;
 
 	/**
 	 * Constructor of dealer which sets initial strategy of dealer and dealer name

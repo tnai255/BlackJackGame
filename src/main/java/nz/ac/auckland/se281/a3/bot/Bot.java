@@ -7,7 +7,7 @@ import nz.ac.auckland.se281.a3.Player;
  * you should change this class for TASK 1
  */
 public class Bot extends Player {
-	BotStrategy strategy;
+	private BotStrategy strategy;
 
 	/**
 	 * Bot constructor that sets the strategy instance field to the input strategy
