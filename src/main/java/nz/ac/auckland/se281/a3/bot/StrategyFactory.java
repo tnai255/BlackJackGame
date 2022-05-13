@@ -12,7 +12,7 @@ public class StrategyFactory {
 		switch (chosenStrategy) {
 		// if input R it creates random strategy
 		case "R":
-			return new RandomnessStrategy();
+			return new RandomStrategy();
 		// if inputs LR it creates low risk strategy
 		case "LR":
 			return new LowRiskStrategy();

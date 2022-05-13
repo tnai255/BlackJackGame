@@ -5,7 +5,7 @@ import java.util.Random;
 import nz.ac.auckland.se281.a3.Hand;
 import nz.ac.auckland.se281.a3.Participant.Action;
 
-public class RandomnessStrategy implements BotStrategy {
+public class RandomStrategy implements BotStrategy {
 
 	/**
 	 * decides action by randomly choosing whether to hit or hold
