@@ -137,7 +137,6 @@ public class BlackJack {
 
 		// clears array before creating new netWins
 		netWins.clear();
-		int i = 0;
 
 		// calculates net wins for each player
 		for (Player player : players) {
